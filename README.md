@@ -57,9 +57,6 @@ yarn prisma db seed
 yarn dev
 ```
 
-### Darmowy hosting
-
-Projekt można wdrożyć bezpłatnie na platformie [Abacus.AI](https://abacus.ai).
 
 ## 📁 Struktura projektu
 
