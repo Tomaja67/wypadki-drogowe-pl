@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: wypadki
+      POSTGRES_PASSWORD: wypadki_secret
+      POSTGRES_DB: wypadki_drogowe
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgresql://wypadki:wypadki_secret@db:5432/wypadki_drogowe
+      NEXTAUTH_URL: http://localhost:3000
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
