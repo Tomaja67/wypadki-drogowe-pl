@@ -1,0 +1,76 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model VoivodeshipStats {
+  id           Int    @id @default(autoincrement())
+  year         Int
+  voivodeship  String
+  accidents    Int
+  killed       Int
+  injured      Int
+  collisions   Int
+
+  @@unique([year, voivodeship])
+  @@index([year])
+  @@index([voivodeship])
+}
+
+model MonthlyStats {
+  id         Int    @id @default(autoincrement())
+  year       Int
+  month      Int
+  monthName  String
+  accidents  Int
+  killed     Int
+  injured    Int
+  collisions Int
+
+  @@unique([year, month])
+  @@index([year])
+}
+
+model HourlyStats {
+  id         Int    @id @default(autoincrement())
+  year       Int
+  hour       Int
+  hourRange  String
+  accidents  Int
+  killed     Int
+  injured    Int
+  collisions Int
+
+  @@unique([year, hour])
+  @@index([year])
+}
+
+model EventTypeStats {
+  id         Int    @id @default(autoincrement())
+  year       Int
+  eventType  String
+  accidents  Int
+  killed     Int
+  injured    Int
+  collisions Int
+
+  @@unique([year, eventType])
+  @@index([year])
+}
+
+model GdyniaQuarterly {
+  id          Int    @id @default(autoincrement())
+  year        Int
+  quarter     Int
+  injured     Int
+  killed      Int
+  totalVictims Int
+  accidents   Int
+
+  @@unique([year, quarter])
+  @@index([year])
+}
